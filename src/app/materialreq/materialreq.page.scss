@@ -1,0 +1,15 @@
+ion-content
+{
+	--background:#f8f9fe;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none !important;
+-moz-appearance: none !important;
+appearance: none !important;
+margin: 0 !important;
+}
+
+  .item-has-focus{
+    --highlight-background: #e2e2e2;
+ }

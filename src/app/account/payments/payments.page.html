@@ -1,0 +1,38 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+<ion-back-button></ion-back-button>
+</ion-buttons>
+    <ion-title>
+  Payments
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content >
+  <p style="font-size: 11px;padding: 8px;text-align: justify;">
+    <b>Note :</b><br>
+For any payment related issues/queries, please write an email to <a style="text-decoration: underline;" (click)="email()">kspay@mykhaana.in</a> Mention your registered mobile number, name and location from your email id.
+  </p>
+  <ion-card mode="ios" style="background-color: white;" *ngFor="let payment of payments">
+      
+    <ion-card-content>
+    
+    <ion-row>
+    <ion-col size="4"><b>Order Period</b>
+     <br>{{ payment.order_period }}
+    
+    </ion-col>
+    <ion-col size="4"><b>Payment Date</b>
+      <br>{{ payment.payment_date }}</ion-col>
+    <ion-col size="4"><b>Total Amount</b>
+      <br>₹ {{ payment.total_amount }}
+    </ion-col>
+    </ion-row>
+    
+    </ion-card-content>
+    
+    </ion-card>
+
+</ion-content>

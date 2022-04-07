@@ -1,0 +1,73 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="background-color: #aa0144; height: 200px; margin-top: -2%">
+    <br />
+    <p style="font-size: 18px; font-weight: 600; color: white" align="center">
+      Welcome to Kitchenstar App by MyKhaana
+    </p>
+    <p style="font-size: 23px; font-weight: 600; color: white" align="center">
+      Please login to continue
+    </p>
+  </div>
+
+  <ion-card
+    mode="ios"
+    style="background-color: white; padding: 10px 10px; margin-top: -5%"
+  >
+    <form #form="ngForm" (ngSubmit)="login(form.value)">
+      <ion-item>
+        <ion-label position="stacked">Your MyKhaana Username</ion-label>
+        <ion-input
+          type="text"
+          [(ngModel)]="username"
+          required
+          name="email"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input
+          type="password"
+          [(ngModel)]="password"
+          required
+          name="password"
+        ></ion-input>
+      </ion-item>
+
+      <br /><br />
+      <ion-button expand="block" mode="ios" type="submit">Login</ion-button>
+    </form>
+  </ion-card>
+  <span style="position: absolute; width: 100%">
+    <p style="font-size: 13px; margin-top: 4px; margin-left: 16px">Note:</p>
+    <p
+      style="
+        font-size: 12px;
+        margin-left: 16px;
+        margin-right: 13px;
+        margin-top: -7px;
+        text-align: justify;
+      "
+    >
+      This app is only for MyKhaana Kitchenstars who are selling their dishes on
+      MyKhaana app. To register as a MyKhaana Kitchenstar, please send your
+      details to info@mykhaana.in or call helpline number 9090108800.
+    </p>
+  </span>
+</ion-content>
+
+<ion-footer>
+  <p align="center" style="font-size: 10px">
+    By signing up, you agree to the
+    <a routerLink="/terms" routerDirection="forward">Terms of Use</a> &
+    <a routerLink="/policy" routerDirection="forward">Privacy Policy</a>
+  </p>
+</ion-footer>

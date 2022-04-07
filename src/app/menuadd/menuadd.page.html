@@ -1,0 +1,292 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> Menu Add Request </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #material>
+  <ion-card mode="ios" id="menuReq" style="background-color: white">
+    <form #form="ngForm">
+      <ion-card-header>
+        <ion-card-subtitle
+          ><b
+            >Use this form to submit any new Menu Addition Request. Please fill
+            all the details in the form below and submit</b
+          ></ion-card-subtitle
+        >
+      </ion-card-header>
+      <ion-item>
+        <ion-label position="floating"
+          ><h3 style="font-weight: 600; font-size: 18px">
+            Menu Name
+          </h3></ion-label
+        >
+        <ion-input
+          type="text"
+          name="menu1"
+          [(ngModel)]="menu1"
+          placeholder="Please write the name of the menu item"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"
+          ><h3 style="font-weight: 600; font-size: 18px">
+            Menu Description
+            <span *ngIf="type == 'bakery'"> & Quantity</span>
+          </h3></ion-label
+        >
+        <ion-textarea
+          name="menuDesc1"
+          [(ngModel)]="menuDesc1"
+          placeholder="Please mention how you make this dish Sweet/Spicy, number of peices etc."
+        ></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"
+          ><h3 style="font-weight: 600; font-size: 18px">Price</h3></ion-label
+        >
+        <ion-input
+          type="number"
+          min="0"
+          name="price1"
+          [(ngModel)]="price1"
+          placeholder="What should be the price of the item"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"
+          ><h3 style="font-weight: 600; font-size: 18px">
+            Veg / Non Veg
+          </h3></ion-label
+        >
+        <ion-select
+          (ionChange)="onSelectChange($event,1)"
+          name="type1"
+          value="-1"
+        >
+          <ion-select-option *ngIf="type1==-1" value="-1"
+            >Select</ion-select-option
+          >
+          <ion-select-option value="0">Veg</ion-select-option>
+          <ion-select-option value="1">Non Veg</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- <ion-button *ngIf="isEdit" expand="block" mode="ios" style="width: 90%;margin-left: 5%" (click)="back()">Back</ion-button> -->
+    </form>
+    <br />
+    <h6
+      style="font-weight: 800; color: #000; padding: 5px"
+      (click)="addItem('2')"
+      *ngIf="!form2 && !form3"
+    >
+      + Add New Item
+    </h6>
+    <h6
+      style="font-weight: 800; color: #000; padding: 5px"
+      (click)="removeItem('2')"
+      *ngIf="form2"
+    >
+      - Delete Item
+    </h6>
+
+    <span *ngIf="form2" id="reqform2">
+      <form #form="ngForm">
+        <ion-item>
+          <ion-label position="floating"
+            ><h3 style="font-weight: 600; font-size: 18px">
+              Menu Name
+            </h3></ion-label
+          >
+          <ion-input
+            type="text"
+            name="menu2"
+            [(ngModel)]="menu2"
+            placeholder="Please write the name of the menu item"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating"
+            ><h3 style="font-weight: 600; font-size: 18px">
+              Menu Description & Quantity
+            </h3></ion-label
+          >
+          <ion-textarea
+            name="menuDesc2"
+            [(ngModel)]="menuDesc2"
+            placeholder="Please mention how you make this dish Sweet/Spicy, number of peices etc."
+          ></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating"
+            ><h3 style="font-weight: 600; font-size: 18px">Price</h3></ion-label
+          >
+          <ion-input
+            type="number"
+            min="0"
+            name="price2"
+            [(ngModel)]="price2"
+            placeholder="What should be the price of the item"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating"
+            ><h3 style="font-weight: 600; font-size: 18px">
+              Veg / Non Veg
+            </h3></ion-label
+          >
+          <ion-select
+            (ionChange)="onSelectChange($event,2)"
+            name="type2"
+            value="-1"
+          >
+            <ion-select-option *ngIf="type2==-1" value="-1"
+              >Select</ion-select-option
+            >
+            <ion-select-option value="0">Veg</ion-select-option>
+            <ion-select-option value="1">Non Veg</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- <ion-button *ngIf="isEdit" expand="block" mode="ios" style="width: 90%;margin-left: 5%" (click)="back()">Back</ion-button> -->
+      </form>
+    </span>
+    <br />
+    <h6
+      style="font-weight: 800; color: #000; padding: 5px"
+      (click)="addItem('3')"
+      *ngIf="form2 && !form3"
+    >
+      + Add New Item
+    </h6>
+    <h6
+      style="font-weight: 800; color: #000; padding: 5px"
+      (click)="removeItem('3')"
+      *ngIf="form3"
+    >
+      - Delete Item
+    </h6>
+    <span *ngIf="form3" id="reqform3">
+      <form #form="ngForm">
+        <ion-item>
+          <ion-label position="floating"
+            ><h3 style="font-weight: 600; font-size: 18px">
+              Menu Name
+            </h3></ion-label
+          >
+          <ion-input
+            type="text"
+            name="menu1"
+            [(ngModel)]="menu3"
+            placeholder="Please write the name of the menu item"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating"
+            ><h3 style="font-weight: 600; font-size: 18px">
+              Menu Description & Quantity
+            </h3></ion-label
+          >
+          <ion-textarea
+            name="menuDesc3"
+            [(ngModel)]="menuDesc3"
+            placeholder="Please mention how you make this dish Sweet/Spicy, number of peices etc."
+          ></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating"
+            ><h3 style="font-weight: 600; font-size: 18px">Price</h3></ion-label
+          >
+          <ion-input
+            type="number"
+            min="0"
+            name="price3"
+            [(ngModel)]="price3"
+            placeholder="What should be the price of the item"
+          ></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating"
+            ><h3 style="font-weight: 600; font-size: 18px">
+              Veg / Non Veg
+            </h3></ion-label
+          >
+          <ion-select
+            (ionChange)="onSelectChange($event,3)"
+            name="type3"
+            value="-1"
+          >
+            <ion-select-option *ngIf="type3==-1" value="-1"
+              >Select</ion-select-option
+            >
+            <ion-select-option value="0">Veg</ion-select-option>
+            <ion-select-option value="1">Non Veg</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- <ion-button *ngIf="isEdit" expand="block" mode="ios" style="width: 90%;margin-left: 5%" (click)="back()">Back</ion-button> -->
+      </form>
+    </span>
+    <br />
+    <h6
+      style="font-weight: 800; color: #000; padding: 5px"
+      (click)="addItem('2')"
+      *ngIf="!form2 && form3"
+    >
+      + Add New Item
+    </h6>
+
+    <ion-button
+      expand="block"
+      mode="ios"
+      style="width: 90%; margin-left: 5%"
+      (click)="addMenuItems()"
+      >Submit</ion-button
+    >
+  </ion-card>
+
+  <ion-card
+    mode="ios"
+    style="max-height: 330px; overflow-y: auto"
+    id="requests"
+  >
+    <ion-card-content *ngIf="menuRequests.length > 0">
+      <ion-card *ngFor="let request of menuRequests">
+        <ion-row>
+          <ion-col size="2"><ion-badge>{{ request.id }}</ion-badge></ion-col>
+          <ion-col size="4"> <h3>{{request.menu_name}}</h3> </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col> {{request.menu_description}} </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6"
+            ><b style="font-size: 14px">Created Date</b> <br /><small
+              style="color: orange"
+              >{{ request.created_at | date: 'dd/MM/yyyy hh:mm' }}</small
+            >
+            <!-- <br><small>{{ order.address }}</small> -->
+          </ion-col>
+          <ion-col size="6">
+            <b style="font-size: 14px; float: right">Status</b><br />
+            <small style="color: orange; float: right"
+              >{{ request.menu_status }}</small
+            >
+          </ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

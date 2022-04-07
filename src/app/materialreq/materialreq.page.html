@@ -1,0 +1,103 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+<ion-back-button></ion-back-button>
+</ion-buttons>
+    <ion-title>
+     Material 
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #material>
+
+  
+
+  <ion-card mode="ios" id="materialReq">
+    <form #form="ngForm" (ngSubmit)="update(form.value)">
+    
+    <ion-card-header>
+    <ion-card-subtitle>{{materialRequestText}}</ion-card-subtitle>
+    <br><span style="color: coral;">*Max qty 30pc</span>
+    </ion-card-header>
+      <ion-item>
+        <ion-label position="floating"><b>Round-500</b></ion-label>
+        <ion-input type="number" min=0 max=30 name="r450" [(ngModel)]="r450" placeholder="Please enter quantity upto 30"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating"><b>Flat-650</b></ion-label>
+        <ion-input type="number" min=0 max=30 name="f650" [(ngModel)]="f650" placeholder="Please enter quantity upto 30"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"><b>Round-750</b></ion-label>
+        <ion-input type="number" min=0 max=30 name="r750" [(ngModel)]="r750" placeholder="Please enter quantity upto 30"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"><b>Round-100</b></ion-label>
+        <ion-input type="number" min=0 max=30 name="r100" [(ngModel)]="r100" placeholder="Please enter quantity upto 30"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"><b>5CP Meal Box</b></ion-label>
+        <ion-input type="number" min=0 max=30 name="5CPMealBox" [(ngModel)]="cpMealBox" placeholder="Please enter quantity upto 30"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating"><b>Foil Paper</b></ion-label>
+        <ion-input type="number" min=0 max=30 name="foilPaper" [(ngModel)]="foilPaper" placeholder="Please enter quantity upto 30"></ion-input>
+      </ion-item>
+   
+    <ion-item>
+      <ion-label position="floating"><b>Packing Bags</b></ion-label>
+      <ion-input type="number" min=0 max=30 name="clothBagsSet" [(ngModel)]="clothBagsSet" placeholder="Please enter quantity upto 30"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating"><b>Pet Bottles</b></ion-label>
+      <ion-input type="number" min=0 max=30 name="clothBagsSet" [(ngModel)]="petBottles" placeholder="Please enter quantity upto 30"></ion-input>
+    </ion-item>
+   
+    <ion-item>
+      <ion-label position="floating"><b>Zip lock pouches</b></ion-label>
+      <ion-input type="number" min=0 max=30 name="zipLockPouches" [(ngModel)]="zipLockPouches" placeholder="Please enter quantity upto 30"></ion-input>
+    </ion-item>
+   
+    <ion-item>
+      <ion-label position="floating"><b>Cellotape</b></ion-label>
+      <ion-input type="number" min=0 max=30 name="cellotape" [(ngModel)]="cellotape" placeholder="Please enter quantity upto 30"></ion-input>
+    </ion-item>
+    
+    <ion-button *ngIf="!isEdit" expand="block" mode="ios" type="submit" style="width: 90%;margin-left: 5%">Submit</ion-button>
+    <ion-button *ngIf="isEdit" expand="block" mode="ios" style="width: 90%;margin-left: 5%" (click)="back()">Back</ion-button>
+    </form>
+    
+    </ion-card>
+
+    <ion-card  mode="ios" style="max-height: 330px;overflow-y: auto">
+
+      <ion-card-content *ngIf="materialOrders.length > 0">
+        <ion-card *ngFor="let order of materialOrders" (click)="packageDetail(order)">
+      <ion-row >
+      <ion-col size="2"><ion-badge>{{ order.id }}</ion-badge></ion-col>
+      <ion-col size="6"><b style="font-size: 14px;">Created Date</b>  
+      <br><small style="color:orange;">{{ order.created_at }}</small>
+      <!-- <br><small>{{ order.address }}</small> -->
+      
+      </ion-col>
+      <ion-col size="4"> <b style="font-size: 14px;float: right">Status</b><br>
+      <small style="color:orange;float: right" *ngIf="order.status == 1">Order Requested</small>
+      <small style="color:green;float: right" *ngIf="order.status == 2">Order Approved</small>
+      <small style="color:rgb(255, 0, 0);float: right" *ngIf="order.status == 3">Order Rejected</small>
+      <small style="color:black;float: right" *ngIf="order.status == 4">Order Out for Delivery</small>
+      
+      </ion-col>
+      </ion-row>
+    </ion-card>
+      </ion-card-content>
+      
+      </ion-card>
+
+</ion-content>

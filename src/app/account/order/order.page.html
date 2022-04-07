@@ -1,0 +1,151 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+<ion-back-button></ion-back-button>
+</ion-buttons>
+    <ion-title>
+      {{ text.history_title }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="data && text">
+  <ion-grid>
+    <ion-row class="ion-padding fontSize">
+      <ion-col  class="border_bottom_only">
+        From <ion-datetime mode="ios" animated="true" [(ngModel)]="startDate" name="startDate" [max]="maxTime" displayFormat="DD-MMM-YYYY"></ion-datetime>
+      </ion-col>
+      <ion-col  class="border_bottom_only">
+        To <ion-datetime mode="ios" animated="true" [(ngModel)]="endDate" name="endDate" [max]="maxTime" displayFormat="DD-MMM-YYYY" ></ion-datetime>
+      </ion-col>
+      <ion-col class="border_bottom_only">
+        <ion-button size="small" mode="ios" (click)="searchOrders()" [disabled]="isLoading">
+          <i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading}"></i>&nbsp; {{searchText}}
+        </ion-button>
+      </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-card mode="ios" style="background-color: white;">
+
+  <!-- <ion-card-header>
+  
+  <ion-card-subtitle></ion-card-subtitle>
+  
+  </ion-card-header> -->
+  
+  <ion-card-content>
+  
+  <ion-row style="text-align: center">
+  
+  <ion-col size="6" style="border-right:1px solid #e8e8e8"><ion-icon name="cart" style="font-size: 30px" color="primary"></ion-icon><br>Total Order Value<br><b>₹ {{completeOrdersValue}}</b></ion-col>
+  
+  <ion-col size="6" ><ion-icon name="checkmark-circle" style="font-size: 30px" color="primary"></ion-icon><br>Completed Orders<br><b>{{completeOrders}}</b></ion-col>
+  
+  </ion-row>
+  
+  </ion-card-content>
+  
+  </ion-card>
+
+  <div style="background-color: white;padding: 10px 10px">
+  
+  <ion-segment [(ngModel)]="pet" scrollable>
+  <!-- <ion-segment-button value="{{ cate.id }}" *ngFor="let cate of data">
+  {{ cate.cate_name }}
+  </ion-segment-button> -->
+  <!-- <ion-segment-button value="1">
+    New
+    </ion-segment-button> -->
+    <ion-segment-button value="2">
+      Complete
+      </ion-segment-button>
+    <ion-segment-button value="3">
+     Cancelled
+      </ion-segment-button>
+  </ion-segment>
+  
+  </div>
+  <div [ngSwitch]="pet">
+  
+  <!-- <div *ngSwitchCase="1">
+
+    <ion-card mode="ios" *ngFor="let order of newOrders" (click)="detail(order)">
+    
+    <ion-card-content *ngIf="order.status !== 2">
+    
+    <ion-row>
+    <ion-col size="2"><ion-badge>{{ order.id }}</ion-badge></ion-col>
+    <ion-col size="6">{{ order.name }}
+    <br><small style="color:orange;">{{ order.created_time }}</small>
+    
+    
+    </ion-col>
+    <ion-col size="4"> <b style="font-size: 14px;float: right">{{ order.currency }} {{ order.total }}</b><br>
+    <small style="color:orange;float: right" *ngIf="order.status == 0">{{ text.s_new_status }}</small>
+    <small style="color:green;float: right" *ngIf="order.status == 1">{{ text.s_confirm_order }}</small>
+    <small style="color:blue;float: right" *ngIf="order.status == 3">{{ text.s_out_delivery_status }}</small>
+    <small style="color:black;float: right" *ngIf="order.status == 12">{{ text.s_complete_status }}</small>
+    
+    </ion-col>
+    </ion-row>
+    
+    </ion-card-content>
+    
+    </ion-card>
+    
+    </div> -->
+  
+    <div *ngSwitchCase="2">
+
+      <ion-card mode="ios" style="background-color: white;" *ngFor="let order of complete" (click)="detail(order)">
+      
+      <ion-card-content>
+      
+      <ion-row>
+      <ion-col size="3"><ion-badge>{{ order.id }}</ion-badge></ion-col>
+      <ion-col size="5">{{ order.name }}
+          <br><small style="color:orange;">{{ order.created_time }}</small>
+          <br><b><small style="color:red;font-size: 11px" *ngIf="order.advanceOrderDate && order.advanceOrderTime">Scheduled</small></b>
+      
+      </ion-col>
+      <ion-col size="4"> <b style="font-size: 14px;float: right">{{ order.currency }} {{ order.subTotal }}</b><br>
+         
+      <small style="color:orange;float: right" *ngIf="order.status == 12">Order Delivered</small>
+      </ion-col>
+      </ion-row>
+      
+      </ion-card-content>
+      
+      </ion-card>
+      
+      </div>
+  
+      <div *ngSwitchCase="3">
+
+        <ion-card mode="ios" style="background-color: white;" *ngFor="let order of cancelledOrders" (click)="detail(order)">
+        
+        <ion-card-content *ngIf="order.status === 2">
+        
+        <ion-row>
+        <ion-col size="3"><ion-badge>{{ order.id }}</ion-badge></ion-col>
+        <ion-col size="5">{{ order.name }}
+        <br><small style="color:orange;">{{ order.created_time }}</small>
+        <br><b><small style="color:red;font-size: 11px" *ngIf="order.advanceOrderDate && order.advanceOrderTime">Scheduled</small></b>
+        
+        </ion-col>
+        <ion-col size="4"> <b style="font-size: 14px;float: right">{{ order.currency }} {{ order.subTotal }}</b><br>
+        
+        <small style="color:orange;float: right" *ngIf="order.status == 2">Order Cancelled</small>
+        
+        </ion-col>
+        </ion-row>
+        
+        </ion-card-content>
+        
+        </ion-card>
+        
+        </div>
+
+      </div>
+  </ion-content>
