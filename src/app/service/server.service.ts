@@ -7,7 +7,10 @@ import { map } from "rxjs/operators";
 })
 export class ServerService {
   //put /api/store/ after your url e.g https://www.abc.com/api/store/
-  url = "https://www.mykhaana.in/" + "testenv/" + "api/store/";
+  url =
+    "https://www.mykhaana.in/" +
+    //+ "testenv/"
+    "api/store/";
   api = "https://www.mykhaana.in/api/";
   // url = "http://delivery.test/api/store/";
   //api = "http://delivery.test/api/";

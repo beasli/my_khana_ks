@@ -53,6 +53,18 @@
                 ></ion-toggle
               ></ion-col>
             </ion-row>
+            <ion-row class="head">
+              <ion-col class="border">Preference</ion-col>
+              <ion-col class="border">Flavour</ion-col>
+              <ion-col class="border">Weight</ion-col>
+              <ion-col class="border">Price</ion-col>
+            </ion-row>
+            <ion-row *ngFor="let value of item.variation; let i = index">
+              <ion-col class="border">{{value.preference}} </ion-col>
+              <ion-col class="border">{{value.flavour}} </ion-col>
+              <ion-col class="border">{{value.weight}} </ion-col>
+              <ion-col class="border">{{value.price | currency:'INR'}}</ion-col>
+            </ion-row>
           </ion-card-content>
         </ion-card>
       </div>
