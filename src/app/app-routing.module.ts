@@ -51,6 +51,7 @@ const routes: Routes = [
     loadChildren: "./account/payments/payments.module#PaymentsPageModule",
   },
   { path: "bakery", loadChildren: "./bakery/bakery.module#BakeryPageModule" },
+  { path: 'kitchen-pics', loadChildren: './account/kitchen-pics/kitchen-pics.module#KitchenPicsPageModule' },
 ];
 
 @NgModule({

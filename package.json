@@ -20,6 +20,8 @@
     "@angular/platform-browser": "~8.1.2",
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
+    "@awesome-cordova-plugins/camera": "^5.41.0",
+    "@awesome-cordova-plugins/core": "^5.41.0",
     "@ionic-native/call-number": "^5.30.0",
     "@ionic-native/core": "^5.14.0",
     "@ionic-native/native-audio": "^5.36.0",
@@ -56,6 +58,7 @@
     "codelyzer": "^5.0.0",
     "cordova-android": "^10.1.1",
     "cordova-plugin-androidx-adapter": "^1.1.3",
+    "cordova-plugin-camera": "^6.0.0",
     "cordova-plugin-nativeaudio": "^3.0.9",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
@@ -83,7 +86,10 @@
       "mx.ferreyra.callnumber": {},
       "cordova-plugin-nativeaudio": {},
       "call-number": {},
-      "cordova-plugin-androidx-adapter": {}
+      "cordova-plugin-androidx-adapter": {},
+      "cordova-plugin-camera": {
+        "ANDROIDX_CORE_VERSION": "1.6.+"
+      }
     },
     "platforms": [
       "android"

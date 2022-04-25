@@ -7,10 +7,7 @@ import { map } from "rxjs/operators";
 })
 export class ServerService {
   //put /api/store/ after your url e.g https://www.abc.com/api/store/
-  url =
-    "https://www.mykhaana.in/" +
-    //+ "testenv/"
-    "api/store/";
+  url = "https://www.mykhaana.in/" + "testenv/" + "api/store/";
   api = "https://www.mykhaana.in/api/";
   // url = "http://delivery.test/api/store/";
   //api = "http://delivery.test/api/";
@@ -183,6 +180,24 @@ export class ServerService {
   updateAppVersion(store_id, version) {
     return this.http
       .get(this.url + "updateversion/" + store_id + "?version=" + version)
+      .pipe(map((results) => results));
+  }
+
+  addImage(data) {
+    return this.http
+      .post(this.url + "addImage", data)
+      .pipe(map((results) => results));
+  }
+
+  getImages(store_id) {
+    return this.http
+      .get(this.url + "getUserImage/" + store_id)
+      .pipe(map((results) => results));
+  }
+
+  deleteImage(id) {
+    return this.http
+      .get(this.url + "deleteImage/" + id)
       .pipe(map((results) => results));
   }
 }

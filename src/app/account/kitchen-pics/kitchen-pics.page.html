@@ -1,0 +1,34 @@
+<ion-header no-border>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> Kitchen Images </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center">
+  <ion-item *ngIf="photo">
+    <ion-img [src]="photo"></ion-img>
+  </ion-item>
+
+  <ion-row>
+    <ion-col size="6" *ngFor="let photo of images">
+      <ion-img [src]="'https://mykhaana.in/testenv/'+photo.img"></ion-img>
+      <ion-button (click)="ImageDeletionOptions(photo.id)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
+
+<ion-footer *ngIf="images && 5 > images.length ">
+  <ion-button
+    expand="block"
+    size="large"
+    fill="outline"
+    (click)="ImageSelectionOptions()"
+  >
+    <ion-icon name="camera"></ion-icon> Upload New Image
+  </ion-button>
+</ion-footer>

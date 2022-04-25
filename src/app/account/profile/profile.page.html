@@ -1,79 +1,79 @@
 <ion-header no-border>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-<ion-back-button></ion-back-button>
-</ion-buttons>
-    <ion-title>
-      {{ text.profile_title }}
-    </ion-title>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title> {{ text.profile_title }} </ion-title>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content *ngIf="data">
+  <ion-card mode="ios" class="welcome-card">
+    <ion-card-header>
+      <ion-card-title>{{ text.profile_heading }}</ion-card-title>
+    </ion-card-header>
 
-<ion-card mode="ios" class="welcome-card">
+    <ion-list lines="none">
+      <ion-list-header>
+        <ion-label>{{ text.profile_welcome }} <b>{{ data.name }}</b></ion-label>
+      </ion-list-header>
 
-<ion-card-header>
+      <ion-item>
+        <ion-label> Open</ion-label>
+        <ion-toggle
+          *ngIf="data.open"
+          checked
+          (ionChange)="storeOpen(0)"
+        ></ion-toggle>
+        <ion-toggle *ngIf="!data.open" (ionChange)="storeOpen(1)"></ion-toggle>
+      </ion-item>
 
-<ion-card-title>{{ text.profile_heading }}</ion-card-title>
+      <ion-item [routerLink]="'/kitchen-pics'">
+        <ion-icon slot="start" color="medium" name="images"></ion-icon>
+        <ion-label>Kitchen Images</ion-label>
+      </ion-item>
 
-</ion-card-header>
+      <ion-item (click)="takeAction(1)">
+        <ion-icon slot="start" color="medium" name="build"></ion-icon>
+        <ion-label>{{ text.profile_setting }}</ion-label>
+      </ion-item>
+      <ion-item (click)="logout()">
+        <ion-icon slot="start" color="medium" name="log-out"></ion-icon>
+        <ion-label>{{ text.profile_logout }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
 
-<ion-list lines="none">
-<ion-list-header>
-<ion-label>{{ text.profile_welcome }} <b>{{ data.name }}</b></ion-label>
-</ion-list-header>
+  <!--Personal Information-->
 
-<ion-item>
-<ion-label> Open</ion-label>
-<ion-toggle  *ngIf="data.open" checked (ionChange)="storeOpen(0)"></ion-toggle>
-<ion-toggle  *ngIf="!data.open"  (ionChange)="storeOpen(1)"></ion-toggle>
-</ion-item>
+  <ion-card mode="ios" *ngIf="action == 1">
+    <form #form="ngForm" (ngSubmit)="update(form.value)">
+      <ion-card-header>
+        <ion-card-subtitle>Update Your Account Setting</ion-card-subtitle>
+      </ion-card-header>
 
-
-<ion-item (click)="takeAction(1)">
-<ion-icon slot="start" color="medium" name="build"></ion-icon>
-<ion-label>{{ text.profile_setting }}</ion-label>
-</ion-item>
-<ion-item (click)="logout()">
-<ion-icon slot="start" color="medium" name="log-out"></ion-icon>
-<ion-label>{{ text.profile_logout }}</ion-label>
-</ion-item>
-</ion-list>
-
-</ion-card>
-
-<!--Personal Information-->
-
-<ion-card mode="ios" *ngIf="action == 1">
-<form #form="ngForm" (ngSubmit)="update(form.value)">
-
-<ion-card-header>
-
-<ion-card-subtitle>Update Your Account Setting</ion-card-subtitle>
-
-</ion-card-header>
-
-<!-- <ion-item>
+      <!-- <ion-item>
   <ion-label position="floating">Min Cart Value</ion-label>
   <ion-input type="tel" name="min_cart_value" [(ngModel)]="data.min_cart_value"></ion-input>
 </ion-item> -->
 
-<ion-item>
-  <ion-label position="floating">Delivery Charges</ion-label>
-  <ion-input type="tel" name="delivery_charges_value" [(ngModel)]="data.delivery_charges_value" disabled></ion-input>
-</ion-item>
+      <ion-item>
+        <ion-label position="floating">Delivery Charges</ion-label>
+        <ion-input
+          type="tel"
+          name="delivery_charges_value"
+          [(ngModel)]="data.delivery_charges_value"
+          disabled
+        ></ion-input>
+      </ion-item>
 
-<ion-item>
-  <ion-label position="floating">Change Password</ion-label>
-  <ion-input type="password" name="password" ngModel disabled></ion-input>
-</ion-item>
-<br>
+      <ion-item>
+        <ion-label position="floating">Change Password</ion-label>
+        <ion-input type="password" name="password" ngModel disabled></ion-input>
+      </ion-item>
+      <br />
 
-<!-- <ion-button expand="block" mode="ios" type="submit" [disabled]="!form" style="width: 90%;margin-left: 5%">Update</ion-button> -->
-</form>
-
-</ion-card>
-
+      <!-- <ion-button expand="block" mode="ios" type="submit" [disabled]="!form" style="width: 90%;margin-left: 5%">Update</ion-button> -->
+    </form>
+  </ion-card>
 </ion-content>

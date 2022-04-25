@@ -193,7 +193,7 @@ export class AppComponent implements OnInit {
         {
           title: "Bakery Menu",
           url: "/bakery",
-          icon: "bowling-ball-outline",
+          icon: "restaurant",
           isVisible: storeData.is_baker,
         },
         {
