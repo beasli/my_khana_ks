@@ -109,4 +109,9 @@ export class ProfilePage implements OnInit {
       .storeOpen(type + "?user_id=" + localStorage.getItem("user_id"))
       .subscribe((response: any) => {});
   }
+  storeAvaibility(type) {
+    this.server
+      .storeAvaibility(type + "?user_id=" + localStorage.getItem("user_id"))
+      .subscribe((response: any) => {});
+  }
 }

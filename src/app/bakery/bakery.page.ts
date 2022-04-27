@@ -107,4 +107,18 @@ export class BakeryPage implements OnInit {
       console.log(this.data);
     }
   }
+
+  changeVisiblity(c, i) {
+    this.data.forEach((element, cat_index) => {
+      element.items.forEach((item, item_index) => {
+        if (cat_index == c && item_index == i) {
+          item.isVariationVisible = !item.isVariationVisible;
+        } else {
+          item.isVariationVisible = 0;
+        }
+      });
+    });
+    // this.data[c].items[i].isVariationVisible =
+    //   !this.data[c].items[i].isVariationVisible;
+  }
 }

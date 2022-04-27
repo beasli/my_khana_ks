@@ -86,6 +86,7 @@ export class KitchenPicsPage implements OnInit {
         this.photo = `data:image/png;base64,${imageData}`;
         this.imageURI = this.photo;
         console.log(this.imageURI);
+        this.submitImage();
       },
       (err) => {
         console.log(JSON.stringify(err));
@@ -113,7 +114,7 @@ export class KitchenPicsPage implements OnInit {
       formdata.append("store_id", localStorage.getItem("user_id"));
       const file = this.DataURIToBlob(this.imageURI);
       console.log(file);
-      formdata.append("media_file", file, "my_img.jpg");
+      formdata.append("gallery", file, "my_img.jpg");
       this.server.addImage(formdata).subscribe((response: any) => {
         this.dismissLoading();
         this.toastController.create({

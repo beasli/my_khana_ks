@@ -90,6 +90,12 @@ export class ServerService {
       .pipe(map((results) => results));
   }
 
+  storeAvaibility(type) {
+    return this.http
+      .get(this.url + "avaibility/" + type)
+      .pipe(map((results) => results));
+  }
+
   orderProcess(id, status) {
     return this.http
       .get(this.url + "orderProcess?id=" + id + "&status=" + status)
