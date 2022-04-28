@@ -76,7 +76,8 @@ export class KitchenPicsPage implements OnInit {
       quality: 20,
       destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: source,
-      targetWidth: 400,
+      targetWidth: 1500,
+      targetHeight: 900,
       correctOrientation: true,
       mediaType: this.camera.MediaType.PICTURE,
     };
