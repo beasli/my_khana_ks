@@ -72,7 +72,7 @@ export class KitchenPicsPage implements OnInit {
     await actionSheet.present();
   }
 
-  getImage(source) {
+  async getImage(source) {
     console.log("get", source);
     const options: CameraOptions = {
       quality: 20,
@@ -85,11 +85,16 @@ export class KitchenPicsPage implements OnInit {
     };
 
     this.camera.getPicture(options).then(
-      (imageData) => {
+      async (imageData) => {
         this.photo = `data:image/png;base64,${imageData}`;
         this.imageURI = this.photo;
         console.log(this.imageURI);
-        this.submitImage();
+        var dimensions: any = await this.getImageDimensions(this.imageURI);
+        if (dimensions.w > dimensions.h) {
+          this.submitImage();
+        } else {
+          this.invalidImageAlert();
+        }
       },
       (err) => {
         console.log(JSON.stringify(err));
@@ -121,7 +126,7 @@ export class KitchenPicsPage implements OnInit {
       this.server.addImage(formdata).subscribe((response: any) => {
         this.dismissLoading();
         this.toastController.create({
-          message: "Image added successfully.",
+          message: "Image Uploaded Successfully.",
         });
         this.loadImages();
       });
@@ -148,7 +153,7 @@ export class KitchenPicsPage implements OnInit {
 
   public async ImageDeletionOptions(id) {
     const actionSheet = await this.actionSheetCtrl.create({
-      header: "Are you really want to delete this image?",
+      header: "Are you sure you want to delete this image?",
       buttons: [
         {
           text: "Delete",
@@ -158,6 +163,29 @@ export class KitchenPicsPage implements OnInit {
         },
         {
           text: "Cancel",
+          role: "cancel",
+        },
+      ],
+    });
+    await actionSheet.present();
+  }
+
+  getImageDimensions(file) {
+    return new Promise(function (resolved, rejected) {
+      var i = new Image();
+      i.onload = function () {
+        resolved({ w: i.width, h: i.height });
+      };
+      i.src = file;
+    });
+  }
+
+  public async invalidImageAlert() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: "Incorrect Image Type. Please upload correct format.",
+      buttons: [
+        {
+          text: "OK",
           role: "cancel",
         },
       ],

@@ -59,11 +59,25 @@
   </ion-item>
 
   <ion-row>
-    <ion-col size="6" *ngFor="let photo of images">
-      <ion-img [src]="'https://mykhaana.in/testenv/'+photo.img"></ion-img>
+    <ion-col size="12" *ngFor="let photo of images">
+      <ion-item>
+        <img
+          style="height: 100px"
+          [src]="'https://mykhaana.in/testenv/'+photo.img"
+        />
+
+        <ion-button
+          fill="outline"
+          slot="end"
+          (click)="ImageDeletionOptions(photo.id)"
+        >
+          <ion-icon name="trash"></ion-icon
+        ></ion-button>
+      </ion-item>
+      <!-- <ion-img [src]="'https://mykhaana.in/testenv/'+photo.img"></ion-img>
       <ion-button (click)="ImageDeletionOptions(photo.id)">
         <ion-icon name="trash"></ion-icon>
-      </ion-button>
+      </ion-button> -->
     </ion-col>
   </ion-row>
 </ion-content>

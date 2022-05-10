@@ -29,16 +29,15 @@
       </ion-item>
 
       <ion-item>
-        <ion-label> Holiday Mode</ion-label>
+        <ion-label> Holiday Mode </ion-label>
         <ion-toggle
-          *ngIf="!data.availablity"
-          checked
-          (ionChange)="storeAvaibility(1)"
+          [ngModel]="!data.availablity"
+          (click)="goForHolyday($event, !data.availablity ? 1 : 0)"
         ></ion-toggle>
-        <ion-toggle
+        <!-- <ion-toggle
           *ngIf="data.availablity"
-          (ionChange)="storeAvaibility(0)"
-        ></ion-toggle>
+          (click)="goForHolyday(0)"
+        ></ion-toggle> -->
       </ion-item>
 
       <ion-item [routerLink]="'/kitchen-pics'">

@@ -44,7 +44,7 @@ export class HomePage {
     this.loadData();
     this.interval = setInterval(() => {
       this.loadData();
-    }, 60000);
+    }, 30000);
   }
 
   ngOnInit() {}

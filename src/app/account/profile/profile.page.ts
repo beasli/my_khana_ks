@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import {
+  ActionSheetController,
+  AlertController,
   LoadingController,
   NavController,
   ToastController,
@@ -25,7 +27,9 @@ export class ProfilePage implements OnInit {
     public server: ServerService,
     public toastController: ToastController,
     private nav: NavController,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    public actionSheetCtrl: ActionSheetController,
+    public alertController: AlertController
   ) {
     this.text = JSON.parse(localStorage.getItem("app_text"));
   }
@@ -112,6 +116,39 @@ export class ProfilePage implements OnInit {
   storeAvaibility(type) {
     this.server
       .storeAvaibility(type + "?user_id=" + localStorage.getItem("user_id"))
-      .subscribe((response: any) => {});
+      .subscribe((response: any) => {
+        this.loadData();
+      });
+  }
+
+  async goForHolyday(e, res) {
+    if (res) {
+      this.storeAvaibility(res);
+    } else {
+      const alert = await this.alertController.create({
+        header: "Alert",
+        message:
+          "Careful! Holiday Mode ON means you will not be available for more than 3 days & your profile will not be seen by customers.",
+        buttons: [
+          {
+            text: "OK",
+            handler: () => {
+              this.storeAvaibility(0);
+            },
+          },
+          {
+            text: "Cancel",
+            role: "cancel",
+            handler: () => {
+              console.log(e);
+              e.srcElement.checked = false;
+              e.srcElement.value = "off";
+              //  this.data.availablity = 0;
+            },
+          },
+        ],
+      });
+      await alert.present();
+    }
   }
 }
