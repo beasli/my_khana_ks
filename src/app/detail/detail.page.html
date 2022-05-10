@@ -1,63 +1,106 @@
 <ion-header no-border>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-<ion-back-button></ion-back-button>
-</ion-buttons>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title *ngIf="text">
-     {{ text.s_detail_title }} <span style="float: right">#{{ data.id }}</span>
+      {{ text.s_detail_title }} <span style="float: right">#{{ data.id }}</span>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content *ngIf="data && text">
+  <!-- <b style="padding: 10px 20px"></b> -->
 
-<!-- <b style="padding: 10px 20px"></b> -->
-
-<ion-card mode="ios" style="background-color: white">
-
-<!-- <ion-card-header>
+  <ion-card mode="ios" style="background-color: white">
+    <!-- <ion-card-header>
 <ion-card-subtitle><h6 style="font-weight: 600;">{{ data.date }}</h6></ion-card-subtitle>
 </ion-card-header> -->
 
-<ion-card-content>
-  <h6 style="font-weight: 600;">&nbsp;{{ data.date }}</h6>
-  
-<ion-row>
-  <ion-col size="9"></ion-col>
-  <ion-col size="3"><h5 style="color:#000;font-weight: 700;text-align: center;">Quantity</h5></ion-col>
-</ion-row>
-<ion-list lines="none">
+    <ion-card-content>
+      <h6 style="font-weight: 600">&nbsp;{{ data.date }}</h6>
 
-<ion-row *ngFor="let item of data.items">
-  <ion-col size="9">
-    
-      <h3 style="color:#000;font-weight: 800;font-size: 15px;padding: 3px;"> {{ item.item }} </h3>
-        <p style="color:#00004D;font-size: 13px;font-weight: 800;padding: 3px;"> {{ item.description }}</p>
-        <p style="color:#E53935;font-size: 13px;font-weight: 800;padding: 3px;"> {{ data.currency }}{{ item.price }}</p>
-      
-      <!-- <ion-icon name="restaurant" slot="start" color="danger"></ion-icon> -->
-   
-  </ion-col>
-  <ion-col size="3"><h3 style="color:#000;font-weight: 800;text-align: center;">{{ item.qty }}</h3></ion-col>
-</ion-row>
+      <ion-row>
+        <ion-col size="9"></ion-col>
+        <ion-col size="3"
+          ><h5 style="color: #000; font-weight: 700; text-align: center">
+            Quantity
+          </h5></ion-col
+        >
+      </ion-row>
+      <ion-list lines="none">
+        <ion-row *ngFor="let item of data.items">
+          <ion-col size="9">
+            <h3
+              style="
+                color: #000;
+                font-weight: 800;
+                font-size: 15px;
+                padding: 3px;
+              "
+            >
+              {{ item.item }}
+            </h3>
+            <p
+              style="
+                color: #00004d;
+                font-size: 13px;
+                font-weight: 800;
+                padding: 3px;
+              "
+            >
+              {{ item.description }}
+            </p>
+            <p
+              style="
+                color: #e53935;
+                font-size: 13px;
+                font-weight: 800;
+                padding: 3px;
+              "
+            >
+              <ng-container *ngFor="let variation of item.variation">
+                {{variation.name + ' > ' + variation.flavour + ' > ' +
+                variation.weight + ' > ' + data.currency + '' +
+                variation.price}}
+              </ng-container>
+              <ng-container *ngIf="!item.variation.length">
+                {{ data.currency }}{{ item.price }}
+              </ng-container>
+            </p>
 
+            <!-- <ion-icon name="restaurant" slot="start" color="danger"></ion-icon> -->
+          </ion-col>
+          <ion-col size="3"
+            ><h3 style="color: #000; font-weight: 800; text-align: center">
+              {{ item.qty }}
+            </h3></ion-col
+          >
+        </ion-row>
+      </ion-list>
 
-</ion-list>
+      <ion-item
+        text-wrap
+        *ngIf="data.spcInstrctn"
+        style="font-size: 13px"
+        lines="none"
+      >
+        <ion-label> {{ data.spcInstrctn }}</ion-label>
+        <ion-icon
+          name="information-circle"
+          slot="start"
+          color="primary"
+        ></ion-icon>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 
-<ion-item text-wrap *ngIf="data.spcInstrctn" style="font-size: 13px" lines="none">
-  <ion-label> {{ data.spcInstrctn }}</ion-label>
-  <ion-icon name="information-circle" slot="start" color="primary"></ion-icon>
-</ion-item>
+  <div class="ion-padding">
+    <ion-row style="border-bottom: 1px solid #f9f9f9; padding: 5px 5px">
+      <ion-col size="6"><b>{{ text.d_user }}</b></ion-col>
+      <ion-col size="6">{{ data.name }}</ion-col>
+    </ion-row>
 
-</ion-card-content>
-</ion-card>
-
-<div class="ion-padding">
-<ion-row style="border-bottom: 1px solid #f9f9f9;padding: 5px 5px">
-<ion-col size="6"><b>{{ text.d_user }}</b></ion-col>
-<ion-col size="6">{{ data.name }}</ion-col>
-</ion-row>
-
-<!-- <ion-row style="border-bottom: 1px solid #f9f9f9;padding: 5px 5px">
+    <!-- <ion-row style="border-bottom: 1px solid #f9f9f9;padding: 5px 5px">
 <ion-col size="6"><b>{{ text.d_phone }}</b></ion-col>
 <ion-col size="6"><a href="tel:{{ data.phone }}">{{ data.phone }}</a></ion-col>
 </ion-row>
@@ -67,59 +110,101 @@
 <ion-col size="6">{{ data.address }}</ion-col>
 </ion-row> -->
 
-<ion-row style="border-bottom: 1px solid #f9f9f9;padding: 5px 5px">
-<ion-col size="6"><b>{{ text.d_total_amount }}</b></ion-col>
-<ion-col size="6">{{ data.currency }}{{ data.subTotal }}</ion-col>
-</ion-row>
-
-<ion-row *ngIf="data.accepted_time !=''" style="border-bottom: 1px solid #f9f9f9;padding: 5px 5px">
-  <ion-col size="6"><b>Accepted Time</b></ion-col>
-  <ion-col size="6">{{ data.accepted_time }}</ion-col>
-  </ion-row>
-
-  <ion-row *ngIf="data.advanceOrderDate && data.advanceOrderTime" style="border-bottom: 1px solid #f9f9f9;padding: 5px 5px">
-    <ion-col size="6"><b>Scheduled for</b></ion-col>
-    <ion-col size="6">{{ data.advanceOrderDate }} | <br>{{ data.advanceOrderTime }}</ion-col>
+    <ion-row style="border-bottom: 1px solid #f9f9f9; padding: 5px 5px">
+      <ion-col size="6"><b>{{ text.d_total_amount }}</b></ion-col>
+      <ion-col size="6">{{ data.currency }}{{ data.subTotal }}</ion-col>
     </ion-row>
 
-<ion-row style="padding: 5px 5px">
-<ion-col size="6"><b>{{ text.d_pay }}</b></ion-col>
-<ion-col size="6" *ngIf="data.pay == 4">Cash On Delivery</ion-col>
-<ion-col size="6" *ngIf="data.pay != 4">Online Paid</ion-col>
-</ion-row>
-
-<ion-row style="border-bottom: 1px solid #f9f9f9;padding: 5px 5px" *ngIf="status===7 || status===8">
-  <ion-col size="6"><b>Runner Name</b></ion-col>
-  <ion-col size="6">{{ runnerPhoneName }}</ion-col>
-  </ion-row>
-
-  <ion-row style="border-bottom: 1px solid #f9f9f9;padding: 5px 5px" *ngIf="status===7 || status===8">
-    <ion-col size="6"><b>Runner Mobile</b></ion-col>
-    <ion-col size="6" style="text-decoration: underline;" (click)="callRunner(runnerPhoneNumber)">{{ runnerPhoneNumber }}</ion-col>
+    <ion-row
+      *ngIf="data.accepted_time !=''"
+      style="border-bottom: 1px solid #f9f9f9; padding: 5px 5px"
+    >
+      <ion-col size="6"><b>Accepted Time</b></ion-col>
+      <ion-col size="6">{{ data.accepted_time }}</ion-col>
     </ion-row>
 
-    <ion-row style="border-bottom: 1px solid #f9f9f9;padding: 5px 5px" *ngIf="pickupEta && status===7 || status===8">
-      <ion-col size="6" style="font-size: 23px;"><b><ion-icon name="timer"></ion-icon></b></ion-col>
+    <ion-row
+      *ngIf="data.advanceOrderDate && data.advanceOrderTime"
+      style="border-bottom: 1px solid #f9f9f9; padding: 5px 5px"
+    >
+      <ion-col size="6"><b>Scheduled for</b></ion-col>
+      <ion-col size="6"
+        >{{ data.advanceOrderDate }} | <br />{{ data.advanceOrderTime
+        }}</ion-col
+      >
+    </ion-row>
+
+    <ion-row style="padding: 5px 5px">
+      <ion-col size="6"><b>{{ text.d_pay }}</b></ion-col>
+      <ion-col size="6" *ngIf="data.pay == 4">Cash On Delivery</ion-col>
+      <ion-col size="6" *ngIf="data.pay != 4">Online Paid</ion-col>
+    </ion-row>
+
+    <ion-row
+      style="border-bottom: 1px solid #f9f9f9; padding: 5px 5px"
+      *ngIf="status===7 || status===8"
+    >
+      <ion-col size="6"><b>Runner Name</b></ion-col>
+      <ion-col size="6">{{ runnerPhoneName }}</ion-col>
+    </ion-row>
+
+    <ion-row
+      style="border-bottom: 1px solid #f9f9f9; padding: 5px 5px"
+      *ngIf="status===7 || status===8"
+    >
+      <ion-col size="6"><b>Runner Mobile</b></ion-col>
+      <ion-col
+        size="6"
+        style="text-decoration: underline"
+        (click)="callRunner(runnerPhoneNumber)"
+        >{{ runnerPhoneNumber }}</ion-col
+      >
+    </ion-row>
+
+    <ion-row
+      style="border-bottom: 1px solid #f9f9f9; padding: 5px 5px"
+      *ngIf="pickupEta && status===7 || status===8"
+    >
+      <ion-col size="6" style="font-size: 23px"
+        ><b><ion-icon name="timer"></ion-icon></b
+      ></ion-col>
       <ion-col size="6">{{ pickupEta }} min.</ion-col>
-      </ion-row>
-</div>
-
+    </ion-row>
+  </div>
 </ion-content>
 
 <ion-footer no-border *ngIf="text">
+  <ion-row *ngIf="status == 0">
+    <ion-col size="6"
+      ><ion-button
+        size="block"
+        mode="ios"
+        (click)="presentAlertOrderCancel(data.id,2)"
+        >{{ text.s_cancel_button }}</ion-button
+      ></ion-col
+    >
 
-<ion-row *ngIf="status == 0">
+    <ion-col size="6"
+      ><ion-button
+        size="block"
+        mode="ios"
+        (click)="presentAlertOrderConfirm(data.id,1)"
+        color="success"
+        >{{ text.s_confirm_button }}</ion-button
+      ></ion-col
+    >
+  </ion-row>
 
-<ion-col size="6"><ion-button size="block" mode="ios" (click)="presentAlertOrderCancel(data.id,2)">{{ text.s_cancel_button }}</ion-button></ion-col>
-
-<ion-col size="6"><ion-button size="block" mode="ios" (click)="presentAlertOrderConfirm(data.id,1)" color="success">{{ text.s_confirm_button }}</ion-button></ion-col>
-
-</ion-row>
-
-<ion-row *ngIf="status == 1">
-
-<!-- <ion-col size="12"><ion-button size="block" mode="ios" routerLink="/dboy/{{ data.id }}" routerDirection="forward">{{ text.s_assign_button }}</ion-button></ion-col> -->
-<ion-col size="12"><ion-button size="block" mode="ios" (click)="presentAlertDeliveryConfirm(data)" routerDirection="forward">{{ text.s_assign_button }}</ion-button></ion-col>
-</ion-row>
-
+  <ion-row *ngIf="status == 1">
+    <!-- <ion-col size="12"><ion-button size="block" mode="ios" routerLink="/dboy/{{ data.id }}" routerDirection="forward">{{ text.s_assign_button }}</ion-button></ion-col> -->
+    <ion-col size="12"
+      ><ion-button
+        size="block"
+        mode="ios"
+        (click)="presentAlertDeliveryConfirm(data)"
+        routerDirection="forward"
+        >{{ text.s_assign_button }}</ion-button
+      ></ion-col
+    >
+  </ion-row>
 </ion-footer>

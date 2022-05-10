@@ -18,7 +18,7 @@
         <ion-label>{{ text.profile_welcome }} <b>{{ data.name }}</b></ion-label>
       </ion-list-header>
 
-      <ion-item>
+      <ion-item *ngIf="data.is_ks">
         <ion-label> Open</ion-label>
         <ion-toggle
           *ngIf="data.open"
@@ -31,13 +31,13 @@
       <ion-item>
         <ion-label> Holiday Mode</ion-label>
         <ion-toggle
-          *ngIf="data.availablity"
+          *ngIf="!data.availablity"
           checked
-          (ionChange)="storeAvaibility(0)"
+          (ionChange)="storeAvaibility(1)"
         ></ion-toggle>
         <ion-toggle
-          *ngIf="!data.availablity"
-          (ionChange)="storeAvaibility(1)"
+          *ngIf="data.availablity"
+          (ionChange)="storeAvaibility(0)"
         ></ion-toggle>
       </ion-item>
 

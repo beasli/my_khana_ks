@@ -8,42 +8,51 @@
 </ion-header>
 
 <ion-content class="ion-text-center">
-  <ion-row class="ion-text-left text-bold">
-    <ion-col>
-      <ion-label> Guidelines for image upload : </ion-label>
-    </ion-col>
-  </ion-row>
-  <ion-row class="ion-text-left text-small">
-    <ion-col>
-      <ion-label> 1) Only horizontal image to be uploaded</ion-label>
-    </ion-col>
-  </ion-row>
-  <ion-row class="ion-text-left text-small">
-    <ion-col>
-      <ion-label>2) Blurry images will be rejected</ion-label>
-    </ion-col>
-  </ion-row>
-  <ion-row class="ion-text-left text-small">
-    <ion-col>
-      <ion-label
-        >3) You can change the images anytime and showcase your
-        dishes</ion-label
-      >
-    </ion-col>
-  </ion-row>
-  <ion-row class="ion-text-left text-small">
-    <ion-col>
-      <ion-label
-        >4) Do not mention your personal information like phone number or
-        address</ion-label
-      >
-    </ion-col>
-  </ion-row>
-  <ion-row class="ion-text-left text-small">
-    <ion-col>
-      <ion-label>5) Image in PNG/JPEG format only and less than 1MB</ion-label>
-    </ion-col>
-  </ion-row>
+  <div
+    class="ion-text-left"
+    *ngIf="text.ksgallerytext"
+    [innerHTML]="text.ksgallerytext"
+  ></div>
+  <ng-container *ngIf="!text.ksgallerytext">
+    <ion-row class="ion-text-left text-bold">
+      <ion-col>
+        <ion-label> Guidelines for image upload : </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-text-left text-small">
+      <ion-col>
+        <ion-label> 1) Only horizontal image to be uploaded</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-text-left text-small">
+      <ion-col>
+        <ion-label>2) Blurry images will be rejected</ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-text-left text-small">
+      <ion-col>
+        <ion-label
+          >3) You can change the images anytime and showcase your
+          dishes</ion-label
+        >
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-text-left text-small">
+      <ion-col>
+        <ion-label
+          >4) Do not mention your personal information like phone number or
+          address</ion-label
+        >
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-text-left text-small">
+      <ion-col>
+        <ion-label
+          >5) Image in PNG/JPEG format only and less than 1MB</ion-label
+        >
+      </ion-col>
+    </ion-row>
+  </ng-container>
 
   <ion-item *ngIf="photo">
     <ion-img [src]="photo"></ion-img>

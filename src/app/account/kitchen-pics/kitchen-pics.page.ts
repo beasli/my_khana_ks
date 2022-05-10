@@ -17,6 +17,7 @@ export class KitchenPicsPage implements OnInit {
   imageURI: any = "";
   photo: any;
   images: any;
+  text: any;
   constructor(
     public actionSheetCtrl: ActionSheetController,
     public camera: Camera,
@@ -27,6 +28,7 @@ export class KitchenPicsPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.text = JSON.parse(localStorage.getItem("app_text"));
     this.loadImages();
   }
 

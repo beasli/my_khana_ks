@@ -60,7 +60,8 @@ export class HomePage {
         localStorage.getItem("user_id"),
         0,
         this.datepipe.transform(new Date(), "yyyy-MM-dd"),
-        this.datepipe.transform(new Date(), "yyyy-MM-dd")
+        ""
+        //  this.datepipe.transform(new Date(), "yyyy-MM-dd")
       )
       .subscribe((response: any) => {
         this.data = response.data;
