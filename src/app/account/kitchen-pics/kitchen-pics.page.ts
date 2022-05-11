@@ -18,6 +18,7 @@ export class KitchenPicsPage implements OnInit {
   photo: any;
   images: any;
   text: any;
+  baseUrl: string;
   constructor(
     public actionSheetCtrl: ActionSheetController,
     public camera: Camera,
@@ -25,7 +26,9 @@ export class KitchenPicsPage implements OnInit {
     private loadingController: LoadingController,
     private toastController: ToastController,
     public server: ServerService
-  ) {}
+  ) {
+    this.baseUrl = server.baseUrl;
+  }
 
   ngOnInit() {
     this.text = JSON.parse(localStorage.getItem("app_text"));
@@ -86,11 +89,13 @@ export class KitchenPicsPage implements OnInit {
 
     this.camera.getPicture(options).then(
       async (imageData) => {
-        this.photo = `data:image/png;base64,${imageData}`;
-        this.imageURI = this.photo;
-        console.log(this.imageURI);
-        var dimensions: any = await this.getImageDimensions(this.imageURI);
+        var photo = `data:image/png;base64,${imageData}`;
+
+        var dimensions: any = await this.getImageDimensions(photo);
         if (dimensions.w > dimensions.h) {
+          this.photo = photo;
+          this.imageURI = this.photo;
+          console.log(this.imageURI);
           this.submitImage();
         } else {
           this.invalidImageAlert();
@@ -128,6 +133,7 @@ export class KitchenPicsPage implements OnInit {
         this.toastController.create({
           message: "Image Uploaded Successfully.",
         });
+        this.photo = "";
         this.loadImages();
       });
     } else {

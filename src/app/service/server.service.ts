@@ -12,7 +12,7 @@ export class ServerService {
   api = "https://www.mykhaana.in/api/";
   // url = "http://delivery.test/api/store/";
   //api = "http://delivery.test/api/";
-
+  baseUrl = "https://mykhaana.in/" + this.testenv;
   constructor(private http: HttpClient) {}
 
   login(data) {

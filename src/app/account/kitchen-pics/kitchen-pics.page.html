@@ -61,10 +61,7 @@
   <ion-row>
     <ion-col size="12" *ngFor="let photo of images">
       <ion-item>
-        <img
-          style="height: 100px"
-          [src]="'https://mykhaana.in/testenv/'+photo.img"
-        />
+        <img style="height: 100px" [src]="baseUrl + photo.img" />
 
         <ion-button
           fill="outline"
