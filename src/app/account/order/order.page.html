@@ -38,7 +38,7 @@
   
   <ion-row style="text-align: center">
   
-  <ion-col size="6" style="border-right:1px solid #e8e8e8"><ion-icon name="cart" style="font-size: 30px" color="primary"></ion-icon><br>Total Order Value<br><b>₹ {{completeOrdersValue}}</b></ion-col>
+  <ion-col size="6" style="border-right:1px solid #e8e8e8"><ion-icon name="cart" style="font-size: 30px" color="primary"></ion-icon><br>Total Earnings<br><b>₹ {{completeOrdersValue*69.32/100 | number : '1.2-2'}}</b></ion-col>
   
   <ion-col size="6" ><ion-icon name="checkmark-circle" style="font-size: 30px" color="primary"></ion-icon><br>Completed Orders<br><b>{{completeOrders}}</b></ion-col>
   
@@ -100,7 +100,7 @@
 
       <ion-card mode="ios" style="background-color: white;" *ngFor="let order of complete" (click)="detail(order)">
       
-      <ion-card-content>
+      <ion-card-content [ngClass]="{'sch-order': order.advanceOrderDate && order.advanceOrderTime}">
       
       <ion-row>
       <ion-col size="3"><ion-badge>{{ order.id }}</ion-badge></ion-col>

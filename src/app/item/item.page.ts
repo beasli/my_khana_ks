@@ -1,6 +1,6 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
+import { AlertController, Events, LoadingController, NavController, ToastController } from '@ionic/angular';
 import { ServerService } from '../service/server.service';
-import { NavController,Platform,LoadingController,IonSlides,Events,AlertController,ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-item',
@@ -63,7 +63,7 @@ export class ItemPage {
            this.specialItems = JSON.parse(JSON.stringify(this.specialItemsCopy));
 
            this.beveragesItemsCopy = response.data.filter(item => {
-            return (item.id==9);
+            return (item.id==6);
               });
            this.beveragesItems = JSON.parse(JSON.stringify(this.beveragesItemsCopy));
  

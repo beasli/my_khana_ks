@@ -18,8 +18,8 @@
 {{ cate.cate_name }}
 </ion-segment-button> -->
       <ion-segment-button value="7"> Quick Menu </ion-segment-button>
-      <ion-segment-button value="8"> Special Menu </ion-segment-button>
-      <ion-segment-button value="9"> Beverages </ion-segment-button>
+      <ion-segment-button value="8"> My Specials </ion-segment-button>
+      <ion-segment-button value="6"> Beverages </ion-segment-button>
       <!-- <ion-segment-button value="10">
     Inactive Items
     </ion-segment-button> -->
@@ -46,7 +46,7 @@
 </span>
 </div> -->
 
-    <div *ngSwitchCase="9">
+    <div *ngSwitchCase="6">
       <span *ngFor="let cate of beveragesItems">
         <ion-card
           mode="ios"
@@ -151,6 +151,9 @@
                   (ionChange)="changeStatus(item.id,1,7)"
                 ></ion-toggle
               ></ion-col>
+              <ion-item>
+                <ion-checkbox checked="true"></ion-checkbox> Pre Order Only
+              </ion-item>
             </ion-row>
           </ion-card-content>
         </ion-card>
