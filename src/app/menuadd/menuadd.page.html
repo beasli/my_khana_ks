@@ -73,10 +73,14 @@
           <ion-select-option *ngIf="type1==-1" value="-1"
             >Select</ion-select-option
           >
-          <ion-select-option value="0">Veg</ion-select-option>
-          <ion-select-option value="1">Non Veg</ion-select-option>
-          <ion-select-option value="2">Contain Egg</ion-select-option>
+            <ion-select-option value="0">Veg</ion-select-option>
+            <ion-select-option value="1">Non Veg</ion-select-option>
+            <ion-select-option value="2">Contain Egg</ion-select-option>
         </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-checkbox checked="true" name="isPreOrder1" [(ngModel)]="isPreOrder1"></ion-checkbox> Pre Order Only
       </ion-item>
 
       <!-- <ion-button *ngIf="isEdit" expand="block" mode="ios" style="width: 90%;margin-left: 5%" (click)="back()">Back</ion-button> -->
@@ -158,6 +162,10 @@
           </ion-select>
         </ion-item>
 
+         <ion-item>
+        <ion-checkbox checked="true" name="isPreOrder2" [(ngModel)]="isPreOrder2"></ion-checkbox> Pre Order Only
+      </ion-item>
+
         <!-- <ion-button *ngIf="isEdit" expand="block" mode="ios" style="width: 90%;margin-left: 5%" (click)="back()">Back</ion-button> -->
       </form>
     </span>
@@ -236,6 +244,10 @@
             <ion-select-option value="1">Non Veg</ion-select-option>
           </ion-select>
         </ion-item>
+
+         <ion-item>
+        <ion-checkbox checked="true" name="isPreOrder3" [(ngModel)]="isPreOrder3"></ion-checkbox> Pre Order Only
+      </ion-item>
 
         <!-- <ion-button *ngIf="isEdit" expand="block" mode="ios" style="width: 90%;margin-left: 5%" (click)="back()">Back</ion-button> -->
       </form>

@@ -5,7 +5,7 @@ import {
   LoadingController,
   NavController,
   Platform,
-  ToastController,
+  ToastController
 } from "@ionic/angular";
 import { ServerService } from "../service/server.service";
 
@@ -47,6 +47,9 @@ export class MenuAdd {
   type1: number = -1;
   type2: number = -1;
   type3: number = -1;
+  isPreOrder1: boolean = false;
+  isPreOrder2: boolean = false;
+  isPreOrder3: boolean = false;
   form2: boolean = false;
   form3: boolean = false;
   menuItems: any = [];
@@ -92,6 +95,7 @@ export class MenuAdd {
     this.menuDesc1 = "";
     this.price1 = 0;
     this.type1 = -1;
+    this.isPreOrder1 = false;
   }
 
   resetForm2() {
@@ -100,6 +104,7 @@ export class MenuAdd {
     this.menuDesc2 = "";
     this.price2 = 0;
     this.type2 = -1;
+    this.isPreOrder2 = false;
   }
 
   resetForm3() {
@@ -108,6 +113,7 @@ export class MenuAdd {
     this.menuDesc3 = "";
     this.price3 = 0;
     this.type3 = -1;
+    this.isPreOrder3 = false;
   }
 
   removeItem(number) {
@@ -198,6 +204,7 @@ export class MenuAdd {
       menu_description: this.menuDesc1,
       menu_price: this.price1,
       nonveg: this.type1,
+      isPreOrder : this.isPreOrder1
     };
     this.menuItems.push(item);
     return true;
@@ -237,6 +244,7 @@ export class MenuAdd {
       menu_description: this.menuDesc2,
       menu_price: this.price2,
       nonveg: this.type2,
+      isPreOrder : this.isPreOrder2
     };
     this.menuItems.push(item);
     return true;
@@ -276,6 +284,7 @@ export class MenuAdd {
       menu_description: this.menuDesc3,
       menu_price: this.price3,
       nonveg: this.type3,
+      isPreOrder : this.isPreOrder3
     };
     this.menuItems.push(item);
     return true;

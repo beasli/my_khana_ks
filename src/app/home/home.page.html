@@ -5,7 +5,7 @@
 </ion-buttons>
 </ion-toolbar>
 <div class="bg1" *ngIf="data && text">
-   <ion-icon name="ribbon"></ion-icon> {{ store.name }} 
+   <ion-icon name="ribbon" *ngIf="store.isPremium" ></ion-icon> {{ store.name }} 
     </div>
 </ion-header>
 

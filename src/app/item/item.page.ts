@@ -152,4 +152,12 @@ export class ItemPage {
         this.disabledItems[1].items=items;
       }
   }
+
+  changePreOrderStatus(item) {
+      this.server.changePreOrderStatus(item.id,item.isPreOrder ? 1 : 0).subscribe((response:any) => {
+        console.log(item);
+        console.log(response);
+      });
+    
+  }
 }
