@@ -7,7 +7,7 @@ import {
   ActionSheetController,
   Events,
   NavController,
-  Platform,
+  Platform
 } from "@ionic/angular";
 import { ServerService } from "./service/server.service";
 
@@ -356,6 +356,6 @@ export class AppComponent implements OnInit {
   }
 
   updateAppVersion(id) {
-    this.server.updateAppVersion(id, "1.0.7").subscribe((response: any) => {});
+    this.server.updateAppVersion(id, "1.3").subscribe((response: any) => {});
   }
 }
